@@ -1,6 +1,7 @@
 import React,{ Component } from 'react';
 import Cardlist from '../components/Cardlist';
 import '../containers/App.css';
+import ErrorBoundary from '../components/ErrorBoundary';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
 // import {robots} from'./robots'; //Because we are exporting only and not default in robots.js
@@ -29,10 +30,12 @@ class App extends Component {
     })
     return (
       <div class='tc'>
-        <h1 className='f1'>Puppy Owners</h1>
+        <h1 className='f1'>Robot Owners</h1>
         <SearchBox searchChange={this.onSearchChange}/>
         <Scroll>
-        <Cardlist robots = {filteredRobots}/>
+          <ErrorBoundary>
+            <Cardlist robots = {filteredRobots}/>
+          </ErrorBoundary>
         </Scroll>
       </div>
     );
